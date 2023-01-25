@@ -1,0 +1,167 @@
+https://www.youtube.com/watch?v=-Mt2FdJjVno
+get_next_line
+
+---------------------------------------------------------------------------
+
+LEAKS
+
+A memory leak in C happens when a computer program 
+poorly handles memory allocations and fails to free up the memory that 
+is no longer required. Memory leaks can have an effect on lowering 
+the system's performance.
+
+---------------------------------------------------------------------------
+
+You will understand how files are opened, read and closed in an OS,
+and how they are interpreted by a programming language for further analysis.
+This task is crucial to understand for a future programmer since much of the time is based
+on manipulating files for data management and persistence.
+This project consists of coding a function that returns one line at a time from a text file.
+
+---------------------------------------------------------------------------
+
+GET_NEXT_LINE
+-------------
+DESCRIPTION
+This function takes an opened file descriptor and returns its next line.
+This function has undefined behavior when reading from a binary file.
+PARAMETERS
+#1. A file descriptor 
+RETURN VALUES
+If successful, get_next_line returns a string with the full line ending in
+a line break (`\n`) when there is one. 
+If an error occurs, or there's nothing more to read, it returns NULL.
+
+----------------------------------------------------------------------------
+
+AUXILIARY FUNCTIONS
+-------------------
+READ_TO_LEFT_STR
+-----------------
+DESCRIPTION
+Takes the opened file descriptor and saves on a "buff" variable what readed
+from it. Then joins it to the cumulative static variable for the persistence
+of the information.
+PARAMETERS
+#1. A file descriptor.
+#2. The pointer to the cumulative static variable from previous runs of
+get_next_line.
+RETURN VALUES
+The new static variable value with buffer joined for the persistence of the info,
+or NULL if error.
+
+----------------------------------------------------------------------------
+
+a funcao read tenta ler nbytes de um ficheiro que esta associado a
+descricao depois do open (estara no main)
+
+o BUFFER_SIZE esta definido no header. quando e testado,
+o size e alteravel. neste caso usamos o termo BUFFER_SIZE
+previamente definido para que a variavel possa ser modificada
+ex: o meu buffer esta definido para 50, quando digo BUFFER_SIZE + 1
+(para ter espaco para o null) estou na verdade a dizer 50 + 1
+
+----------------------------------------------------------------------------
+
+When memory blocks are allotted by calloc(), malloc(), or realloc()  
+functions, the C library function free() is used to deallocate or release
+ the memory blocks to reduce their wastage. 
+free() function in C should only be used either for the pointers pointing 
+to the memory allocated using malloc() or for a NULL pointer. free() 
+function only frees the memory from the heap and it does not call the 
+destructor. To destroy the allocated memory and call the destructor 
+we can use the delete() operator in C.
+
+----------------------------------------------------------------------------
+
+File descriptor is a reference that points to a file that is opened on
+your computer
+
+----------------------------------------------------------------------------
+
+SYNOPSIS
+
+       #include <unistd.h>
+
+       ssize_t read(int fd, void *buf, size_t count);
+
+DESCRIPTION
+
+       read() attempts to read up to count bytes from file descriptor fd
+       into the buffer starting at buf.
+
+       On files that support seeking, the read operation commences at
+       the file offset, and the file offset is incremented by the number
+       of bytes read.  If the file offset is at or past the end of file,
+       no bytes are read, and read() returns zero.
+
+       If count is zero, read() may detect the errors described below.
+       In the absence of any errors, or if read() does not check for
+       errors, a read() with a count of 0 returns zero and has no other
+       effects.
+
+----------------------------------------------------------------------------
+
+The open() function establishes the connection between a file and a 
+file descriptor. It creates an open file description that refers to a file 
+and a file descriptor that refers to that open file description. The file 
+descriptor is used by other I/O functions to refer to that file. The path 
+argument points to a pathname naming the file.
+
+The open() function will return a file descriptor for the named file 
+that is the lowest file descriptor not currently open for that process.
+ The open file description is new, and therefore the file descriptor does 
+ not share it with any other process in the system. The FD_CLOEXEC file 
+ descriptor flag associated with the new file descriptor will be cleared.
+
+The file offset used to mark the current position within the file 
+is set to the beginning of the file.
+The file status flags and file access modes of the open file 
+description will be set according to the value of oflag.
+
+Values for oflag are constructed by a bitwise-inclusive-OR of 
+flags from the following list, defined in <fcntl.h>. 
+Applications must specify exactly one of the first three values 
+(file access modes) below in the value of oflag:
+
+O_RDONLY
+    Open for reading only. 
+O_WRONLY
+    Open for writing only. 
+O_RDWR
+    Open for reading and writing. The result is undefined 
+	if this flag is applied to a FIFO. 
+
+A FIFO file is a special kind of file on the local storage which 
+allows two or more processes to communicate with each other by 
+reading/writing to/from this file. A FIFO special file is entered 
+into the filesystem by calling mkfifo() in C.
+
+----------------------------------------------------------------------------
+
+Static variables are initialized only once. The compiler persists with 
+the variable till the end of the program. Static variables can be defined
+ inside or outside the function. They are local to the block. 
+ The default value of static variables is zero. The static variables 
+ are alive till the execution of the program.
+
+ https://www.youtube.com/watch?v=OngGUoENgWo
+
+----------------------------------------------------------------------------
+
+Actual code
+utils: ft_strlen
+queremos que os limites sejam paragrafos (new line)
+em vez de null, entao trocamos o '\0' por '\n' 
+
+
+----------------------------------------------------------------------------
+----------------------------------------------------------------------------
+----------------------------------------------------------------------------
+----------------------------------------------------------------------------
+----------------------------------------------------------------------------
+
+
+Biblioteca fcntl 
+manipulate file description -- biblioteca para fopen
+que é utilizada na função principal
