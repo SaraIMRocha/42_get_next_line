@@ -156,7 +156,66 @@ em vez de null, entao trocamos o '\0' por '\n'
 
 
 ----------------------------------------------------------------------------
+
+These functions are used to read the contents of a file line by line, one line at a time. 
+Here's a step-by-step explanation of how they work together:
+
+The get_next_line function is called with the file descriptor as an argument.
+The function checks for errors such as invalid file descriptor, invalid buffer 
+	size, or an attempt to open too many files.
+The function initializes a static variable l to store the contents of the 
+	file as it is read. If l is empty, the function reads from the file using 
+	read and stores the contents in l.
+The function calls ft_strjoin to concatenate the contents of l with the 
+	contents of the previous line(s) read, if any. The result is stored in the str variable.
+The function calls gnl_bzero to remove the current line from l by setting 
+	its contents to null. The gnl_bzero function also returns a value indicating 
+	whether a complete line was found in the buffer.
+If a complete line was found in the buffer, the function breaks out of the 
+	loop and returns str, which contains the complete line. If not, the loop 
+	continues to read more data from the file until a complete line is found.
+If an error occurs during the loop, the function frees the memory allocated for str and returns NULL.
+
+Here's a brief explanation of each function and why they are necessary:
+
+    ft_strlen: calculates the length of a string. 
+	This function is used by ft_strjoin to determine the size of the 
+	buffer needed to concatenate two strings.
+
+    ft_strjoin: concatenates two strings and returns a newly allocated string. 
+	This function is used by get_next_line to concatenate the contents of l 
+	with the contents of the previous line(s) read.
+
+    gnl_bzero: removes the current line from the buffer by setting its 
+	contents to null. This function is used by get_next_line to remove 
+	the current line from l after it has been read.
+
+    get_next_line: reads the contents of a file line by line, one line at a time, 
+	and returns a newly allocated string containing each line. 
+	This function is the main function that ties all the other functions together. 
+	It uses ft_strjoin to concatenate the contents of the file, gnl_bzero to 
+	remove each line after it has been read, and a loop to continue reading 
+	from the file until a complete line is found.
+
 ----------------------------------------------------------------------------
+
+The function works with any defined buffer size in your .h file, it's likely 
+because your function is designed to be flexible and able to handle buffers of 
+different sizes.
+
+One possibility is that your function is using dynamic memory allocation to 
+create a buffer of the appropriate size at runtime. 
+Dynamic memory allocation allows a program to allocate and deallocate memory 
+on the fly, rather than relying on a fixed-size buffer that's defined at compile time. 
+This can make your program more flexible and adaptable to different input sizes.
+
+Another possibility is that your function is designed to handle input in chunks 
+or segments, rather than processing the entire input at once. For example, 
+if your function is reading data from a file, it might read the file in chunks 
+of a certain size, rather than reading the entire file into memory at once. 
+This approach can also make your program more flexible and able to handle 
+input of different sizes.
+
 ----------------------------------------------------------------------------
 ----------------------------------------------------------------------------
 ----------------------------------------------------------------------------

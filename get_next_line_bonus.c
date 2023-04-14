@@ -6,7 +6,7 @@
 /*   By: sara <sara@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 02:06:32 by sara              #+#    #+#             */
-/*   Updated: 2023/01/24 17:56:46 by sara             ###   ########.fr       */
+/*   Updated: 2023/01/27 12:39:08 by sara             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,3 +38,28 @@ char	*get_next_line(int fd)
 	}
 	return (str);
 }
+
+/*int main()
+{
+	char *line;
+	char *line2;
+	char *line3;
+	int fd1;
+	int fd2;
+	int fd3;
+
+	fd1 = open("test.txt", O_RDONLY);
+	fd2 = open("test2.txt", O_RDONLY);
+	fd3 = open("test3.txt", O_RDONLY);
+	line = get_next_line(fd1);
+	line2 = get_next_line(fd2);
+	line3 = get_next_line(fd3);
+
+	printf("%s", line);
+	printf("%s", line2);
+	printf("%s", line3);
+
+	free(line);
+	free(line2);
+	free(line3);
+}*/
